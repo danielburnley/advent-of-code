@@ -3,7 +3,11 @@ from src.day_one.CalculateDistance import CalculateDistance
 
 class TestCalculateDistance(TestCase):
     def assertDistance(self, expectedDistance):
-        self.assertEqual(expectedDistance, self.use_case.execute(self.directions))
+        self.assertEqual(expectedDistance, self.use_case.execute(self.directions)[0])
+
+    def assertTwiceVisited(self, expectedCoordinates):
+        self.use_case.execute(self.directions)
+        self.assertEqual(expectedCoordinates, self.use_case.twiceLocation)
 
     def setUp(self):
         super().setUp()
@@ -33,3 +37,7 @@ class TestCalculateDistance(TestCase):
     def test_givenDirectionsWithTwoDigits_whenCalculatingDistance_returnCorrectDistance(self):
         self.directions = "R10, L10"
         self.assertDistance(20)
+
+    def test_givenVisitedLocationTwice_whenCalculatingDistance_returnCorrectPlaceVisitedTwice(self):
+        self.directions = "R8, R4, R4, R8"
+        self.assertTwiceVisited((4, 0))
