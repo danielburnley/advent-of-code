@@ -1,3 +1,12 @@
+import Data.List.Split
+
+main = do
+	contents <- getContents
+        let splitted = splitOn ", " contents
+	    result = moveStart splitted
+            strResult = show result
+        putStrLn strResult
+
 moveStart (dir:dirs) = 
 	let (x,y) = move (dir:dirs) (0, 0) 'N'
   	in abs x + abs y
