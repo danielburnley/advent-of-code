@@ -1,6 +1,6 @@
 from unittest import TestCase
-from src.day_two.CalculatePassCode import CalculatePassCode
-from src.day_two.Keypads import SIMPLE_KEY_PAD, MANAGEMENT_KEY_PAD
+from src.day_2.CalculatePassCode import CalculatePassCode
+from src.day_2.Keypads import SIMPLE_KEY_PAD, MANAGEMENT_KEY_PAD
 
 
 class TestCalculatePassCode(TestCase):
