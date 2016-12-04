@@ -1,5 +1,5 @@
 from unittest import TestCase
-from src.day_one.CalculateDistance import CalculateDistance
+from src.day_1.CalculateDistance import CalculateDistance
 
 class TestCalculateDistance(TestCase):
     def assertDistance(self, expectedDistance):
