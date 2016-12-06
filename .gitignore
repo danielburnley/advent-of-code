@@ -3,3 +3,6 @@ danielburnley/Python/.idea/
 danielburnley/Python/.idea_modules/
 *.iws
 *.pyc
+
+## DanJ Erlang
+*.beam
