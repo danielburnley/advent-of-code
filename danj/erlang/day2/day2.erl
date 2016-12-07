@@ -2,7 +2,7 @@
 -export([start_a/0, start_b/0]).
 
 input_day2() ->
-    {ok, Data} = file:read_file("day2-input.txt"),
+    {ok, Data} = file:read_file("day2/day2-input.txt"),
     binary:split(Data, [<<"\n">>], [global]).
 
 isDigitInList(Digit, List) ->
@@ -54,16 +54,7 @@ processDigitA(StartDigit, Code) ->
 	NewDigitValue.
 
 
-forEachInstruction([Instruction | []], StartDigit, WhichProcess) ->
-	if
-		WhichProcess == "a" ->
-			Digit = processDigitA(StartDigit, [Instruction]);
-		true ->
-			Digit = processDigitB(StartDigit, [Instruction])
-	end,
-	% io:fwrite("fEI e[~p, ~p]\n", [[Instruction], Digit]),
-	Digit;
-
+forEachInstruction([], _SD, _WP) -> _SD;
 forEachInstruction([Instruction | Tail], StartDigit, WhichProcess) ->
 	if
 		WhichProcess == "a" ->
