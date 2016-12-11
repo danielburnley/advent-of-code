@@ -40,6 +40,7 @@ solution_b(Words) ->
 start_b() ->
 	Words = day6_input(),
 	io:fwrite("Day 6B:\nLeast frequent letter password [~p]\n", [solution_b(Words)]).
+	%Potentially map [1,2..7,8] [getXLetter from Col N]
 
  	% A = qoclwvah
  	% B = ryrgviuv
