@@ -8,7 +8,7 @@ class Day8:
         self.screen = self.generate_screen(width, height)
 
     def generate_screen(self, width: int, height: int) -> list:
-        return [["." for i in range(width)] for i in range(height)]
+        return [["." for _ in range(width)] for _ in range(height)]
 
     def draw_rect(self, width, height):
         for i in range(height):
@@ -16,9 +16,7 @@ class Day8:
                 self.screen[i][j] = "#"
 
     def rotate_x(self, row, amount):
-        row_deque = deque(self.screen[row])
-        row_deque.rotate(amount)
-        self.screen[row] = list(row_deque)
+        self.screen[row] = list(deque(self.screen[row]).rotate(amount))
 
     def rotate_y(self, col, amount):
         col_deque = deque([row[col] for row in self.screen])
