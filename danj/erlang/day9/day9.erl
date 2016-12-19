@@ -1,12 +1,13 @@
 -module(day9).
 -export([start_a/0, start_b/0]).
-
+-compile(nowarn_unused_function).
+-compile(nowarn_unused_vars).
 -include("../helpers/helper.hrl").
 
 command_string_to_values(Command) ->
 	{_, [{X,Y}]} = re:run(Command, "x"),
-	Val1 = helper_s2i(string:substr(Command, 1, X)),
-	Val2 = helper_s2i(string:substr(Command, X + 2)),
+	Val1 = s2i(string:substr(Command, 1, X)),
+	Val2 = s2i(string:substr(Command, X + 2)),
 	{Val1, Val2}.
 
 run_command({NextChars, Length}, RestOfString) ->
