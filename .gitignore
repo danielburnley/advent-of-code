@@ -7,3 +7,4 @@ danielburnley/Python/.idea_modules/
 ## DanJ Erlang
 *.beam
 erl_crash.dump
+danj/erlang/test
