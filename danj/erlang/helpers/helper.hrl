@@ -33,3 +33,9 @@ helper_multiply_string(Str, 1) -> Str;
 helper_multiply_string(Str, I) -> Str ++ (helper_multiply_string(Str, I - 1)).
 
 length_of_i(I) -> length(integer_to_list(I)).
+
+safe_fetch(K, Default, F) ->
+	case dict:is_key(K, F) of 
+		true -> dict:fetch(K, F);
+		_Else -> Default
+	end.
