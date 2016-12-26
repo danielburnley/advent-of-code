@@ -39,3 +39,5 @@ safe_fetch(K, Default, F) ->
 		true -> dict:fetch(K, F);
 		_Else -> Default
 	end.
+
+md5_hash(Input) -> lists:flatten([io_lib:format("~2.16.0b", [C]) || <<C>> <= erlang:md5(Input)]).
