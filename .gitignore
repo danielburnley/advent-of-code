@@ -4,14 +4,6 @@ danielburnley/Python/.idea_modules/
 *.iws
 *.pyc
 
-danielburnley/Elixir/advent_of_code/_build/
-danielburnley/Elixir/advent_of_code/cover/
-danielburnley/Elixir/advent_of_code/deps/
-danielburnley/Elixir/advent_of_code/doc/
-danielburnley/Elixir/advent_of_code/.fetch
-danielburnley/Elixir/advent_of_codeerl_crash.dump
-*.ez
-danielburnley/Elixir/advent_of_code.vscode
 ## DanJ Erlang
 *.beam
 erl_crash.dump
