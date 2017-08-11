@@ -1,0 +1,3 @@
+use Mix.Config
+
+config :advent_of_code, session_key: 'YOUR KEY HERE'
