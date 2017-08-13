@@ -16,6 +16,7 @@ defmodule AdventOfCode do
     IO.puts "Day 5.1 - #{AdventOfCode.DayFive.PartOne.solve(input)}"
     IO.puts "Day 5.2 - #{AdventOfCode.DayFive.PartTwo.solve(input)}"
     input = get_input(2015, 6)
+    IO.puts "Day 6.1 - #{AdventOfCode.DaySix.solve(input)}"
   end
 
   defp get_input(year, day) do
