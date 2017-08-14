@@ -3,9 +3,11 @@ defmodule AdventOfCode.DaySix do
     String.split(input, "\n", trim: true)
     |> _solve(grid)
     |> List.flatten
-    |> Enum.count(&(&1 ==1))
+    |> Enum.count(&(is_on(&1)))
   end
 
+  defp is_on({1, _}), do: true
+  defp is_on(_), do: false
   defp _solve([], grid), do: grid
   defp _solve([input|rest], grid) do
     [x_start, x_end] = get_x_range(input)
@@ -49,10 +51,12 @@ defmodule AdventOfCode.DaySix do
   defp get_instruction("turn off"<>_),  do: :off
   defp get_instruction("toggle"<>_),    do: :toggle
 
-  defp update_light(:on, _), do: 1
-  defp update_light(:off, _), do: 0
-  defp update_light(:toggle, 1), do: 0
-  defp update_light(:toggle, 0), do: 1
+  defp update_light(:on, {_, i}), do: {1, i}
+  defp update_light(:off, {_, i}), do: {0, i}
+  defp update_light(:toggle, {1, i}), do: {0, i}
+  defp update_light(:toggle, {0, i}), do: {1, i}
 
-  defp get_grid, do: for _ <- 1..1000, do: (for _ <- 1..1000, do: 0)
+  defp get_grid, do: for _ <- 1..1000, do: (for i <- 0..999, do: {0, i})
 end
+
+# Enum.map(grid, &(Enum.with_index(&1))) |> Enum.at(0) |> Enum.chunk_by(fn({_, index}) -> index > 0 && index < 3 end)
