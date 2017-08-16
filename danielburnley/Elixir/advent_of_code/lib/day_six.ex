@@ -29,20 +29,28 @@ defmodule AdventOfCode.DaySix do
     |> update_grid(instruction, y_from+1, y_to, x_from, x_to)
   end
 
-  defp update_row(row, instruction, index, index), do: List.replace_at(row, index, update_light(instruction, Enum.at(row, index)))
+  defp update_row(row, instruction, 0, to) do
+    case Enum.chunk_by(row, fn{_, index} -> 0 <= index && index <= to end) do
+      [to_replace, remaining] -> Enum.map(to_replace, &(update_light(instruction, &1))) ++ remaining
+      [to_replace] -> Enum.map(to_replace, &(update_light(instruction, &1)))
+    end
+  end
+
   defp update_row(row, instruction, from, to) do
-    List.replace_at(row, from, update_light(instruction, Enum.at(row, from)))
-    |> update_row(instruction, from+1, to)
+    case Enum.chunk_by(row, fn{_, index} -> from <= index && index <= to end) do
+      [first, to_replace, last] -> first ++ Enum.map(to_replace, &(update_light(instruction, &1))) ++ last
+      [first, to_replace]       -> first ++ Enum.map(to_replace, &(update_light(instruction, &1)))
+    end
   end
 
   defp get_x_range(input) do
-    Regex.scan(~r/(\d+),/, input, capture: :all_but_first) 
+    Regex.scan(~r/(\d+),/, input, capture: :all_but_first)
     |> List.flatten
     |> Enum.map(&(String.to_integer &1))
   end
 
-  defp get_y_range(input) do 
-    Regex.scan(~r/,(\d+)/, input, capture: :all_but_first) 
+  defp get_y_range(input) do
+    Regex.scan(~r/,(\d+)/, input, capture: :all_but_first)
     |> List.flatten
     |> Enum.map(&(String.to_integer &1))
   end
@@ -58,5 +66,3 @@ defmodule AdventOfCode.DaySix do
 
   defp get_grid, do: for _ <- 1..1000, do: (for i <- 0..999, do: {0, i})
 end
-
-# Enum.map(grid, &(Enum.with_index(&1))) |> Enum.at(0) |> Enum.chunk_by(fn({_, index}) -> index > 0 && index < 3 end)
