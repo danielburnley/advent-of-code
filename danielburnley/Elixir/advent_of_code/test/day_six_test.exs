@@ -4,7 +4,7 @@ defmodule DaySixTest do
   defp test_grid(size), do: for _ <- 1..size, do: (for _ <- 1..size, do: 0)
   defp convert(grid), do: Enum.map(grid, &(Enum.with_index(&1)))
 
-  defp assert_grid(input, grid, expected), do: assert AdventOfCode.DaySix.solve(input, grid) == count_on(expected)
+  defp assert_grid(input, grid, expected), do: assert AdventOfCode.DaySix.PartOne.solve(input, grid) == count_on(expected)
   defp count_on(input), do: List.flatten(input) |> Enum.count(&(is_on(&1)))
   defp is_on({1, _}), do: true
   defp is_on(_), do: false
@@ -30,7 +30,7 @@ defmodule DaySixTest do
     assert_grid("turn off 0,0 through 2,0", start_grid, expected_grid)
   end
 
-  test "it should turn on all of the lights given the instruction"do 
+  test "it should turn on all of the lights given the instruction"do
     start_grid = test_grid(3) |> convert()
     expected_grid = [[1,1,1],[1,1,1],[1,1,1]] |> convert()
 
