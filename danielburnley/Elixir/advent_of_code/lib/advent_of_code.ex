@@ -21,6 +21,7 @@ defmodule AdventOfCode do
     input = get_input(2015, 7)
     input = String.split(input, "\n", trim: true)
     IO.puts "Day 7.1 - #{AdventOfCode.DaySeven.solve(input)["a"]}"
+    IO.puts "Day 7.2 - #{AdventOfCode.DaySeven.solve2(input)["a"]}"
   end
 
   defp get_input(year, day) do

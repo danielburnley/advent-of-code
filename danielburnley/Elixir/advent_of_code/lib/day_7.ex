@@ -16,6 +16,8 @@ defmodule AdventOfCode.DaySeven do
               send caller, {false}
           end
           loop(cache)
+        {:stop} ->
+          :ok
       end
     end
   end
@@ -24,8 +26,23 @@ defmodule AdventOfCode.DaySeven do
   def solve(config) do
     {:ok, cache} = AdventOfCode.DaySeven.Cache.start
     Process.register(cache, :cache)
-    compile(config)
+    values = compile(config)
     |> execute
+    send :cache, :stop
+    Process.unregister(:cache)
+    values
+  end
+
+  def solve2(config) do
+    replace_input([], config)
+    |> solve
+  end
+
+  defp replace_input(input, ["19138 -> b"|rest]) do
+    input ++ ["16076 -> b"] ++ rest
+  end
+  defp replace_input(input, [first|rest]) do
+    replace_input(input ++ [first], rest)
   end
 
   defp compile(instructions, compiled_instructions \\ %{})
